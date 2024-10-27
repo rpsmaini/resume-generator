@@ -1,70 +1,69 @@
-{% load static %}
-{% load form_tags %}  <!-- Load your custom template tags here -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Resume Generator</title>
-    <link rel="stylesheet" href="{% static 'profiles/css/styles.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body>
-<div class="container">
-    <h1 class="mt-4">Resume Generator</h1>
-    <form method="post">
-        {% csrf_token %}
-        <div class="card mb-3">
-            <div class="card-header">Personal Information</div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        {{ profile_form.name.label_tag }} 
-                        {{ profile_form.name|add_class:"form-control" }}
-                    </div>
-                    <div class="col-md-6">
-                        {{ profile_form.job_position.label_tag }} 
-                        {{ profile_form.job_position|add_class:"form-control" }}
+<body class="bg-gray-900 flex items-center justify-center h-screen">
+    <div class="container max-w-lg p-8 bg-gray-800 text-gray-200 rounded-xl shadow-lg">
+        <h1 class="text-4xl font-extrabold text-gray-100 mb-6 text-center">Resume Generator</h1>
+        <form>
+            <div class="space-y-4">
+                <div class="flex flex-col">
+                    <label for="name" class="text-lg font-semibold mb-1"><i class="fas fa-user mr-2 text-amber-500"></i>Name</label>
+                    <input type="text" id="name" class="border border-gray-700 bg-gray-900 rounded-lg p-3 w-full text-gray-100 placeholder-gray-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-sm transition duration-200 ease-in-out">
+                </div>
+                <div class="flex flex-col">
+                    <label for="job_position" class="text-lg font-semibold mb-1"><i class="fas fa-briefcase mr-2 text-amber-500"></i>Job Position</label>
+                    <input type="text" id="job_position" class="border border-gray-700 bg-gray-900 rounded-lg p-3 w-full text-gray-100 placeholder-gray-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-sm transition duration-200 ease-in-out">
+                </div>
+                <div class="flex flex-col">
+                    <label for="contact_number" class="text-lg font-semibold mb-1"><i class="fas fa-phone mr-2 text-amber-500"></i>Contact Number</label>
+                    <input type="text" id="contact_number" class="border border-gray-700 bg-gray-900 rounded-lg p-3 w-full text-gray-100 placeholder-gray-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-sm transition duration-200 ease-in-out">
+                </div>
+                <div class="flex flex-col">
+                    <label for="email" class="text-lg font-semibold mb-1"><i class="fas fa-envelope mr-2 text-amber-500"></i>Email</label>
+                    <input type="email" id="email" class="border border-gray-700 bg-gray-900 rounded-lg p-3 w-full text-gray-100 placeholder-gray-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-sm transition duration-200 ease-in-out">
+                </div>
+                <div class="flex flex-col">
+                    <label for="linkedin" class="text-lg font-semibold mb-1"><i class="fab fa-linkedin mr-2 text-amber-500"></i>LinkedIn</label>
+                    <input type="url" id="linkedin" class="border border-gray-700 bg-gray-900 rounded-lg p-3 w-full text-gray-100 placeholder-gray-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-sm transition duration-200 ease-in-out">
+                </div>
+                <div class="flex flex-col">
+                    <label for="address" class="text-lg font-semibold mb-1"><i class="fas fa-home mr-2 text-amber-500"></i>Address</label>
+                    <input type="text" id="address" class="border border-gray-700 bg-gray-900 rounded-lg p-3 w-full text-gray-100 placeholder-gray-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-sm transition duration-200 ease-in-out">
+                </div>
+                <div class="flex flex-col">
+                    <label for="location" class="text-lg font-semibold mb-1"><i class="fas fa-map-marker-alt mr-2 text-amber-500"></i>Location</label>
+                    <div class="space-y-2">
+                        <select id="country" class="border border-gray-700 bg-gray-900 rounded-lg p-3 w-full text-gray-100 placeholder-gray-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-sm transition duration-200 ease-in-out">
+                            <option value="" disabled selected class="text-gray-400">Select Country</option>
+                            <option>United States</option>
+                            <option>India</option>
+                            <option>Canada</option>
+                            <!-- Add more countries as needed -->
+                        </select>
+                        <select id="state" class="border border-gray-700 bg-gray-900 rounded-lg p-3 w-full text-gray-100 placeholder-gray-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-sm transition duration-200 ease-in-out">
+                            <option value="" disabled selected class="text-gray-400">Select State/Province</option>
+                            <option>California</option>
+                            <option>New York</option>
+                            <option>Maharashtra</option>
+                            <!-- Add more states as needed -->
+                        </select>
+                        <input type="text" id="city" placeholder="City" class="border border-gray-700 bg-gray-900 rounded-lg p-3 w-full text-gray-100 placeholder-gray-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-sm transition duration-200 ease-in-out">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        {{ profile_form.contact_number.label_tag }} 
-                        {{ profile_form.contact_number|add_class:"form-control" }}
-                    </div>
-                    <div class="col-md-6">
-                        {{ profile_form.email.label_tag }} 
-                        {{ profile_form.email|add_class:"form-control" }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        {{ profile_form.linkedin.label_tag }} 
-                        {{ profile_form.linkedin|add_class:"form-control" }}
-                    </div>
-                    <div class="col-md-6">
-                        {{ profile_form.address.label_tag }} 
-                        {{ profile_form.address|add_class:"form-control" }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        {{ profile_form.location.label_tag }} 
-                        {{ profile_form.location|add_class:"form-control" }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        {{ profile_form.skills.label_tag }} 
-                        {{ profile_form.skills|add_class:"form-control" }}
-                    </div>
+                <div class="flex flex-col">
+                    <label for="skills" class="text-lg font-semibold mb-1"><i class="fas fa-cogs mr-2 text-amber-500"></i>Skills</label>
+                    <input type="text" id="skills" class="border border-gray-700 bg-gray-900 rounded-lg p-3 w-full text-gray-100 placeholder-gray-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 shadow-sm transition duration-200 ease-in-out">
                 </div>
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-gray-900 font-bold py-2 px-6 rounded-lg mt-6 shadow-lg transform hover:scale-105 transition duration-300 ease-in-out w-full">
+                Submit
+            </button>
+        </form>
+    </div>
 </body>
 </html>
