@@ -1,0 +1,70 @@
+{% load static %}
+{% load form_tags %}  <!-- Load your custom template tags here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Generator</title>
+    <link rel="stylesheet" href="{% static 'profiles/css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Resume Generator</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="card mb-3">
+            <div class="card-header">Personal Information</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ profile_form.name.label_tag }} 
+                        {{ profile_form.name|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ profile_form.job_position.label_tag }} 
+                        {{ profile_form.job_position|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ profile_form.contact_number.label_tag }} 
+                        {{ profile_form.contact_number|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ profile_form.email.label_tag }} 
+                        {{ profile_form.email|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ profile_form.linkedin.label_tag }} 
+                        {{ profile_form.linkedin|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ profile_form.address.label_tag }} 
+                        {{ profile_form.address|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ profile_form.location.label_tag }} 
+                        {{ profile_form.location|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ profile_form.skills.label_tag }} 
+                        {{ profile_form.skills|add_class:"form-control" }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
